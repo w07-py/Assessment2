@@ -1,4 +1,5 @@
 from country import Country
+from character import Enemy
 
 india = Country("India")
 india.set_description("colorful")
@@ -76,7 +77,7 @@ street_1.link_room(street_2, "north")
 street_2.link_room(big_bosses_room, "west")
 
 
-current_room = Country
+current_room = british
 while True:
     print("\n")
     current_room.get_details()

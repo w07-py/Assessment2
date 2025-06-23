@@ -3,6 +3,7 @@ class Country:
         self.name = country_name
         self.description = None
         self.linked_rooms = {}
+        self.character = None
 
     def set_description(self, country_description):
         self.description = country_description
@@ -31,7 +32,7 @@ class Country:
     def get_details(self):
         for direction in self.linked_rooms:
             room = self.linked_rooms[direction]
-            print("The" + rooms.get_name() + " is " + direction)
+            print("The" + room.get_name() + " is " + direction)
 
     def move(self, direction):
         if direction in self.linked_rooms:
@@ -39,3 +40,5 @@ class Country:
         else:
             print("You can't go that way")
             return self
+
+
