@@ -2,10 +2,10 @@ from country import Country
 from character import Enemy
 
 india = Country("India")
-india.set_description("colorful")
+india.set_description("A sacred sandstone chamber glowing with eternal fire. Orange tapestries ripple in the heat. Brass bells hang silently from the ceiling, waiting for a ritual that never begins. ")
 
 british = Country("British")
-british.set_description("wood and dark")
+british.set_description("A sandstone chamber lit by oil torches. Hieroglyphics cover the walls, and a weathered altar sits at the center, untouched for centuries.")
 
 bridge_british = Country("Bridge")
 bridge_british.set_description("Wodden")
