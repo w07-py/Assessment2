@@ -24,7 +24,7 @@ class Country:
         self.character = new_character
 
     def get_character(self):
-        return self.character
+        return self.character 
 
     def link_room(self, room_to_link, direction):
         self.linked_rooms[direction] = room_to_link
