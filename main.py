@@ -13,11 +13,6 @@ bridge_british.set_description("An arched stone bridge covered in moss and ivy. 
 boss_british_room = Country("British Boss")
 boss_british_room.set_description("lll")
 
-india.link_room(british, "south")
-british.link_room(bridge_british, "east")
-bridge_british.link_room(british, "west")
-bridge_british.link_room(boss_british_room, "east")
-
 egypt_1 = Country("Egypt 1")
 egypt_1.set_description("A sandstone chamber lit by oil torches. Hieroglyphics cover the walls, and a weathered altar sits at the center, untouched for centuries.")
 
@@ -29,14 +24,6 @@ egypt_2.set_description("A narrow corridor flanked by jackal-headed statues. The
 
 boss_egypt_room = Country("Boss Queen")
 boss_egypt_room.set_description("A golden burial chamber sealed in time. A stone sarcophagus glows faintly at the center, and sacred energy vibrates beneath the sands.")
-
-british.link_room(egypt_1, "south")
-egypt_1.link_room(power_store, "east")
-power_store.link_room(egypt_1, "north")
-egypt_1.link_room(egypt_2, "south")
-egypt_2.link_room(egypt_1, "north")
-egypt_2.link_room(boss_egypt_room, "east")
-boss_egypt_room.link_room(egypt_2, "west")
 
 japan = Country("Japan")
 japan.set_description("A moss-covered courtyard where a lone cherry blossom tree blooms out of season. Petals remain suspended mid-air, frozen in a moment of stillness.")
@@ -52,15 +39,6 @@ boss_japan_1_room.set_description("A moonlit doji lined with polished katanas. A
 
 boss_japan_2_room = Country("afhau")
 boss_japan_2_room.set_description("A msit-shrouded shrine interior filled with the scent of incense. Sacred talismans float weightlessly, and the atmosphere hums with restrained power.")
-
-egypt_2.link_room(japan, "south")
-japan.link_room(store, "east")
-store.link_room(japan, "west")
-japan.link_room(bridge_japan, "south")
-bridge_japan.link_room(japan, "north")
-bridge_japan.link_room(boss_japan_1_room, "south")
-boss_japan_1_room.link_room(bridge_japan, "north")
-boss_japan_1_room.link_room(boss_japan_2_room, "east")
 
 china = Country("China")
 china.set_description("A grand hall supported by jade pillars and gloden rafters. Massive scrolls hang from the ceiling, and a silent brass gong dominates the center.")
@@ -86,6 +64,28 @@ boss_china_3_room.set_description("hafioaE")
 boss_china_4_room = Country("4")
 boss_china_4_room.set_description("faaeqfqe")
 
+india.link_room(british, "south")
+british.link_room(bridge_british, "east")
+bridge_british.link_room(british, "west")
+bridge_british.link_room(boss_british_room, "east")
+
+british.link_room(egypt_1, "south")
+egypt_1.link_room(power_store, "east")
+power_store.link_room(egypt_1, "north")
+egypt_1.link_room(egypt_2, "south")
+egypt_2.link_room(egypt_1, "north")
+egypt_2.link_room(boss_egypt_room, "east")
+boss_egypt_room.link_room(egypt_2, "west")
+
+egypt_2.link_room(japan, "south")
+japan.link_room(store, "east")
+store.link_room(japan, "west")
+japan.link_room(bridge_japan, "south")
+bridge_japan.link_room(japan, "north")
+bridge_japan.link_room(boss_japan_1_room, "south")
+boss_japan_1_room.link_room(bridge_japan, "north")
+boss_japan_1_room.link_room(boss_japan_2_room, "east")
+
 boss_japan_2_room.link_room(china, "north")
 china.link_room(museum, "east")
 museum.link_room(china, "west")
@@ -103,10 +103,10 @@ boss_china_4_room.link_room(boss_china_3_room, "west")
 boss_china_4_room.link_room(boss_china_1_room, "south")
 boss_china_1_room.link_room(boss_china_4_room, "north")
 
-current_room = india
+current_country = india
 while True:
     print("\n")
-    current_room.get_details()
+    current_country.get_details()
     command=input(">")
     current_rooms = current_room.move(command)
     
