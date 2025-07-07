@@ -32,7 +32,7 @@ class Country:
     def get_details(self):
         for direction in self.linked_rooms:
             room = self.linked_rooms[direction]
-            print("The" + room.get_name() + " is " + direction)
+            print("The " + room.get_name() + " is " + direction)
 
     def move(self, direction):
         if direction in self.linked_rooms:
