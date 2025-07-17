@@ -1,8 +1,8 @@
 class Country:
     def __init__(self, country_name):
-        self.name = country_name
+        self.country_name = country_name
         self.description = None
-        self.linked_rooms = {}
+        self.linked_countries = {}
         self.character = None
 
     def set_description(self, country_description):
@@ -15,10 +15,10 @@ class Country:
         print(self.description)
 
     def set_name(self, country_name):
-        self.name = country_name
+        self.country_name = country_name
 
     def get_name(self):
-        return self.name
+        return self.country_name
 
     def set_character(self, new_character):
         self.character = new_character
@@ -26,17 +26,20 @@ class Country:
     def get_character(self):
         return self.character 
 
-    def link_room(self, room_to_link, direction):
-        self.linked_rooms[direction] = room_to_link
+    def link_country(self, country_to_link, direction):
+        self.linked_countries[direction] = country_to_link
 
     def get_details(self):
-        for direction in self.linked_rooms:
-            room = self.linked_rooms[direction]
-            print("The " + room.get_name() + " is " + direction)
+        print(self.country_name)
+        print("-------------")
+        print(self.description)
+        for direction in self.linked_countries:
+            country = self.linked_countries[direction]
+            print("The " + country.get_name() + " is " + direction)
 
     def move(self, direction):
-        if direction in self.linked_rooms:
-            return self.linked_rooms[direction]
+        if direction in self.linked_countries:
+            return self.linked_countries[direction]
         else:
             print("You can't go that way")
             return self
