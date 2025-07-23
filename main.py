@@ -30,6 +30,7 @@ def slow_print(text, delay = 0.05):
         time.sleep(delay)
     print()
     
+print()
 
 time.sleep(1)
 slow_print("Dear player, welcome to Empire Assassins!")
