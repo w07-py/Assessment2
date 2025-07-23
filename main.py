@@ -136,6 +136,16 @@ player = Player(
     ATK = 10
 )
 
+starting_weapon = Weapon(
+    name = "Holy Sword",
+    damage = 10,
+    description = "A legendary blade imbued with divine power, capable of banishing darkness and guarding those who cannot defend themselves.",
+    effect = "Attack the enemy",
+    obtain_method = ObtainMethod.QUEST
+)
+player.pick_up(starting_weapon)
+print(f"\n Kael gives you a {starting_weapon} to begin your journey.")
+
 player.id_card()
 
 #Country
@@ -206,37 +216,37 @@ boss_room_china_4.set_description("A blazing altar chamber filled with dancing e
 boss_india = Boss(
     char_name = "Ashvara the Eternal Flame",
     char_description = "A divine warrior wreathed in sacred flame, with eyes that reflect the eternal cycle.",
-    health = 45,
-    skill = "",
-    weakness = "",
-    ATK = random.randint(1, 15)
+    health = 60,
+    skill = "Fire",
+    weakness = "Water",
+    ATK = 15
 )
 
 boss_british = Boss(
     char_name = "Lord Blackthorn of Albion",
     char_description = "A noble draped in shadowed robes and thorns, plotting with an ever-sinister smile.",
-    health = 65,
-    skill = "",
-    weakness = "",
-    ATK = random.randint(5, 15)
+    health = 70,
+    skill = "Thorn Shield",
+    weakness = "Sword",
+    ATK = 20
 )
 
 boss_egypt = Boss(
     char_name = "Pharaoh Nefra-Ra",
     char_description = "An ancient pharaoh risen from the sands, radiating death and divine power.",
     health = 85,
-    skill = "",
-    weakness = "",
-    ATK = random.randint(10, 30)
+    skill = "Sands",
+    weakness = "Light",
+    ATK = 30
 )
 
 boss_japan_1 = Boss(
     char_name = "Shogun Kurokami",
     char_description = "A silent samurai with jet-black hair, blade always half-drawn and gaze never shaken.",
     health = 95,
-    skill = "",
-    weakness = "",
-    ATK = random.randint(5, 40)
+    skill = "Shadow Strike",
+    weakness = "Stick",
+    ATK = 40
 )
 
 boss_japan_2 = Boss(
@@ -244,44 +254,44 @@ boss_japan_2 = Boss(
     char_description = "A shrine maiden bathed in green light, surrounded by sacred spirits and chants.",
     health = 105,
     skill = "Nature's Invocation",
-    weakness = "",
-    ATK = random.randint(10, 40)
+    weakness = "Fire",
+    ATK = 45
 )
 
 boss_china_1 = Boss(
     char_name = "General Longwei",
     char_description = "A towering general clad in dragon-engraved armor, exuding a fierce aura of loyalty and strength.",
     health = 110,
-    skill = "",
-    weakness = "",
-    ATK = random.randint(25, 50)
+    skill = "Dragon's Roar",
+    weakness = "Ice",
+    ATK = 50
 )
 
 boss_china_2 = Boss(
     char_name = "Empress Xuelan",
     char_description = "An elegant but distant empress whose steps chill the air, ruling with ice and iron.",
     health = 115,
-    skill = "",
-    weakness = "",
-    ATK = random.randint(30, 50)
+    skill = "Frost Domain",
+    weakness = "Wind",
+    ATK = 55
 )
 
 boss_china_3 = Boss(
     char_name = "Master Wuchen",
     char_description = "A cloaked hermit whose voice echoes with ancient wisdom. Dust never touches his steps.",
     health = 120,
-    skill = "",
-    weakness = "",
-    ATK = random.randint(25, 60)
+    skill = "Void Meditation",
+    weakness = "Chaos",
+    ATK = 60
 )
 
 boss_china_4 = Boss(
     char_name = "Zhu Yan the Vermilion Flame",
     char_description = "A blazing figure wrapped in vermilion fire, laughing amidst destruction.",
     health = 160,
-    skill = "",
-    weakness = "",
-    ATK = random.randint(35, 70)
+    skill = "Phoenix Rebirth",
+    weakness = "Wodden sword",
+    ATK = 70
 )
 
 #Item
@@ -512,101 +522,110 @@ boss_room_china_4.set_character(boss_china_4)
 
 #Boss_Item
 boss_india.loot.append(weapon_india)
+boss_india.loot.append(india_key)
 boss_british.loot.append(weapon_british)
+boss_british.loot.append(british_key)
 boss_egypt.loot.append(weapon_egypt)
+boss_egypt.loot.append(egypt_key)
 boss_japan_1.loot.append(weapon_japan_1)
+boss_japan_1.loot.append(japan_key_half1)
 boss_japan_2.loot.append(weapon_japan_2)
+boss_japan_2.loot.append(japan_key_half2)
 boss_china_1.loot.append(weapon_china_1)
+boss_china_1.loot.append(china_key)
 boss_china_2.loot.append(weapon_china_2)
+boss_china_2.loot.append(china_key)
 boss_china_3.loot.append(weapon_china_3)
+boss_china_3.loot.append(china_key)
 boss_china_4.loot.append(weapon_china_4)
+boss_china_4.loot.append(china_key)
 
 #Store_Item
-def add_item_to_store():
-    game_store = Store()
-    game_store.add_item(Armor(
-        name="Guardian Helmet",
-        defense=10,
-        description="A sturdy helmet to protect your head.",
-        effect="Increase defense by 10",
-        weight=2,
-        obtain_method=ObtainMethod.STORE
-    ))
+game_store = Store()
 
-    game_store.add_item(Armor(
-        name="Iron Chestplate",
-        defense=15,
-        description="Solid chest armor.",
-        effect="Blocks 20% damage",
-        weight=4,
-        obtain_method=ObtainMethod.STORE
-    ))
+game_store.add_item(Armor(
+    name="Guardian Helmet",
+    defense=10,
+    description="A sturdy helmet to protect your head.",
+    effect="Increase defense by 10",
+    weight=2,
+    obtain_method=ObtainMethod.STORE
+), 75)
 
-    game_store.add_item(Armor(
-        name="Phoenix Cloak",
-        defense=12,
-        description="A cloak woven with fire-resistant feathers.",
-        effect="Immunity to fire damage",
-        weight=2,
-        obtain_method=ObtainMethod.STORE
-    ))
+game_store.add_item(Armor(
+    name="Iron Chestplate",
+    defense=15,
+    description="Solid chest armor.",
+    effect="Blocks 20% damage",
+    weight=2.5,
+    obtain_method=ObtainMethod.STORE
+), 99)
 
-    game_store.add_item(Armor(
-        name="Hermit's Sandals",
-        defense=5,
-        description="Lightweight sandals that enhance mobility.",
-        effect="+10% evasion chance",
-        weight=1,
-        obtain_method=ObtainMethod.STORE
-    ))
+game_store.add_item(Armor(
+    name="Phoenix Cloak",
+    defense=12,
+    description="A cloak woven with fire-resistant feathers.",
+    effect="Immunity to fire damage",
+    weight=2,
+    obtain_method=ObtainMethod.STORE
+), 78)
 
-    game_store.add_item(Potion(
-        name="Health Potion",
-        potion_type="Health",
-        amount=50,
-        description="Restores 50 HP.",
-        effect="Restore 50 health",
-        weight=1,
-        obtain_method=ObtainMethod.STORE
-    ))
+game_store.add_item(Armor(
+    name="Hermit's Sandals",
+    defense=5,
+    description="Lightweight sandals that enhance mobility.",
+    effect="+10% evasion chance",
+    weight=1,
+    obtain_method=ObtainMethod.STORE
+), 90)
 
-    game_store.add_item(Potion(
-        name="Strength Potion",
-        potion_type="Strength",
-        amount=20,
-        description="Boosts your attack power.",
-        effect="Increase ATK by 20 for 3 turns",
-        weight=1,
-        obtain_method=ObtainMethod.STORE
-    ))
+game_store.add_item(Potion(
+    name="Health Potion",
+    potion_type="Health",
+    amount=50,
+    description="Restores 50 HP.",
+    effect="Restore 50 health",
+    weight=1,
+    obtain_method=ObtainMethod.STORE
+), 100)
 
-    game_store.add_item(Potion(
-        name="Elixir of Defense",
-        potion_type="Defense",
-        amount=15,
-        description="Temporarily hardens your skin.",
-        effect="+15 DEF for 3 turns",
-        weight=1,
-        obtain_method=ObtainMethod.STORE
-    ))
-    
-    game_store.display_store()
+game_store.add_item(Potion(
+    name="Strength Potion",
+    potion_type="Strength",
+    amount=20,
+    description="Boosts your attack power.",
+    effect="Increase ATK by 20 for 3 turns",
+    weight=1,
+    obtain_method=ObtainMethod.STORE
+), 66)
 
+game_store.add_item(Potion(
+    name="Elixir of Defense",
+    potion_type="Defense",
+    amount=15,
+    description="Temporarily hardens your skin.",
+    effect="+15 DEF for 3 turns",
+    weight=1,
+    obtain_method=ObtainMethod.STORE
+), 88)
 
 current_country = india
 dead = False
 
-current_country.get_details()
 while dead == False:
     print("\n")
+    current_country.get_details()
     inhabitant = current_country.get_character()
     if inhabitant is not None:
         inhabitant.describe()
-    command = input(">")
+
+    if current_country.get_name() in ["Spirit Market", "Value of Power"]:
+        print("\n[STORE] Type 'shop' to browse items for sale.")
+
+    command = input(">").strip().lower()
+
     if command in ["north", "south", "east", "west"]:
         current_country = current_country.move(command)
-        if current_country == store:
-            add_item_to_store()
 
     elif command == "talk":
         if inhabitant is not None:
@@ -614,13 +633,82 @@ while dead == False:
 
     elif command == "fight":
         if inhabitant is not None:
-            fight_with= input("What will you fight with?\n")
             if isinstance(inhabitant, Boss):
-                result = player.fight(inhabitant, fight_with)
-                #boss_ATK = inhabitant.boss_fight(player)
-                if result is True:
-                    print("Bravo, hero you won the fight!")
-                    current_country.set_character(None)
-                elif result is False:
-                    dead = True
+                weapon_in_bag = [item for item in player.bag_items if hasattr(item, 'damage')]
+                if not weapon_in_bag:
+                    print("You dont't have a weapon, come to buy one!")
+                    continue
+                print("Available Weapons:")
+                for i, weapon in enumerate(weapon_in_bag, 1):
+                    print(f"{i}. {weapon.name} (Damage: {weapon.damage})")
+
+                try:
+                    choice = int(input("Choose the number relate to the weapon: ")) - 1
+                    if 0 <= choice < len(weapon_in_bag):
+                        weapon = weapon_in_bag[choice]
+                        result = player.fight(inhabitant, weapon.name)
+                        if result is True:
+                            print("Bravo, you won the fight!")
+                            current_country.set_character(None)
+                        elif result is False:
+                            dead = True
+                    else:
+                        print("Please enter a valid number!")
+                except ValueError:
+                    print("Please enter a valid number!")
+    elif command == "shop":
+        if current_country.get_name() in ["Spirit Market", "Vault of Power"]:
+            print(f"\nYour glod: {player.gold}")
+            game_store.display_store()
+            try:
+                choice = int(input("Enter the number of the item that you want to buy: "))
+                if choice > 0 and choice <= len(game_store.store_items):
+                    item = game_store.store_items[choice - 1]
+                    price = game_store.prices.get(item.name, 50)
+                    if player.gold >= price:
+                        if player.pick_up(item):
+                            player.gold -= price
+                            print(f"\nYou bought: {item.name} for {price} gold!")
+                            print(f"Remaining glod: {player.gold}")
+                    else:
+                        print("You don't have enough glod!")
+                else:print("Invalid number!")
+            except ValueError:
+                print("Please try again!")
+        else:
+            print("There is no shop here.")
+    elif command == "use":
+        item_name = input("What item do you want to use?").strip()
+        for item in player.bag_items:
+            if item.name.lower() == item_name.lower() and hasattr(item, 'Potion_type'):
+                if item.potion_type.lower() == "health":
+                    player.player_health += item.amount
+                    print(f"You used {item_name} and restored {item.amount} health.")
+                    player.bag_items.remove(item)
+                    break
+    elif command == "bag":
+        player.bag()
+    elif command == "health":
+        player.id_card()
+    elif command == "help":
+        print("Available commands:")
+        print("- north/south/east/west: Move in that direction")
+        print("- talk: Talk to characters")
+        print("- fight: Fight with bosses")
+        print("- shop: Browse store items (when in a store)")
+        print("- use: Use an item from your bag")
+        print("- bag/inventory: Check your bag")
+        print("- health/status: Check your status")
+        print("- help: Show this help message")
+        print("- quit: Exit the game")
+    elif command == "quit":
+        print("Thanks for playing! Goodbye!")
+        break
+    else:
+        print("Unknown command. Type 'help' for available commands.")
     
+    keys_collected = [item for item in player.bag_items if isinstance(item, Key)]
+    if len(keys_collected) >= 5: 
+        print("\n CONGRATULATIONS! You have collected all the keys and conquered the Empire of Assassins!")
+        print("You are now the ultimate assassin! Thanks for playing!")
+        break

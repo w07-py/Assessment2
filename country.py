@@ -36,7 +36,7 @@ class Country:
         print(self.description)
         for direction in self.linked_countries:
             country = self.linked_countries[direction]
-            print("The " + self.country_name() + " is " + direction)
+            print("The " + country.get_name() + " is " + direction)
 
     def move(self, direction):
         if direction in self.linked_countries:
@@ -48,11 +48,21 @@ class Country:
 class Store:
     def __init__(self):
         self.store_items = []
+        self.prices = {}
 
-    def add_item(self, item: Item):
+    def add_item(self, item: Item, price: int = 30):
         self.store_items.append(item)
+        self.prices[item.name] = price
 
     def display_store(self):
-        print("Welcome to the Store! Here are the items available:")
+        print("\n=== WELCONE TO THE STORE ===")
+        print("Here are the items available for purchase:")
+        print("-" * 50)
         for idx, item in enumerate(self.store_items, 1):
-            print(f"{idx}. {item.name} - {item.description} (Effect: {item.effect}, Weight: {item.weight})")
+            price = self.prices.get(item.name, 30)
+            print(f"{idx}. {item.name} - {price} gold")
+            print(f"{item.description}")
+            print(f"Effect: {item.effect} | Weight: {item.weight}")
+            print()
+        print("Enter item number to buy, or 0 to cancel.")
+        print("-" * 50)

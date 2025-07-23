@@ -12,13 +12,18 @@ class Player:
         self.bag_items: List[Item] = []
         self.experience = 0
         self.ATK = ATK
+        self.gold = 150
 
     def id_card(self):
+        print("\n=== PLAYER STATUS ===")
         print("Name:", self.player_name)
         print("Appearance:", self.appearance)
         print("Skill:", self.player_skill)
         print("Health:", self.player_health)
+        print("Attack:", self.ATK)
         print("Experience:", self.experience)
+        print("Gold:", self.gold)
+        print("=" * 20)
 
     def bag(self):
         total_weight = sum(item.weight for item in self.bag_items)
@@ -58,49 +63,61 @@ class Player:
         print(f"Item '{item_name}' not found in your bag.")
         return None
 
-        
-    def amount_health(self, amount):
-        self.player_health += amount
-        if self.player_health < 0:
-            print(f"{self.player_name}, you are killed by the enemy. Game over!")
-        elif self.player_health > 0 and self.player_health <30:
-            print(f"{self.player_name}, be careful, your health is lower than 30%!")
-        elif self.player_health > 30 and self.player_health < 70:
-            print(f"{self.player_name}, you are doing well, but be cautious! ")
-        else:
-            print(f"{self.player_name}, you are in great shape! Keep fighting with them!")
-
     def fight(self, enemy: "Boss", weapon: str):
+        weapon_item = None
+        for item in self.bag_items:
+            if hasattr(item, 'damage') and item.name.lower() == weapon.lower():
+                weapon_item = item
+                break
+        if weapon_item is None:
+            print(f"You don't have weapon in your bag!")
+            return None
+        
+        common_damage = weapon_item.damage + self.ATK
+
         if weapon.lower() == enemy.weakness.lower():
-            damage = self.ATK * 2
+            damage = int(common_damage * 2)
             print(f"Critical hit! {weapon} is effective against {enemy.char_name}")
         else:
-            damage = max(1, self.ATK - random.randint(1, 5))
+            damage = common_damage + random.randint(-5, 10)
+            damage = max(1, damage)
 
         enemy.health -= damage
-        print(f"You against {enemy.char_name} successfully for {damage} units of health.")
+        print(f"You attack {enemy.char_name} successfully with {weapon} for {damage} damage.")
+        print(f"{enemy.char_name} has {enemy.health} health remaining.")
 
         if enemy.health > 0:
             boss_damage = random.randint(1, enemy.ATK)
             self.player_health -= boss_damage
             print(f"{enemy.char_name} hits you for {boss_damage} damage!")
-            self.amount_health(0)
 
-        if enemy.health <= 0:
-            print(f"You defeated {enemy.char_name}!")
-            if hasattr(enemy, "drop_loot"):
+            if self.player_health <= 0:
+                print(f"{self.player_name}, you have been defeated!")
+                return False
+            elif self.player_health < 30:
+                print(f"{self.player_name}, critical health! Be careful!")
+            elif self.player_health < 70:
+                print(f"{self.player_name}, you will be fine, keep fighting!")
+            else:
+                print(f"{self.player_name}, you're still very strong!")
+            
+            print(f"Your health: {self.player_health}")
+            return None
+         
+        else:
+            print(f"\n Congraduation! You defeated {enemy.char_name}!")
+
+            if hasattr(enemy, "drop_loot") and enemy.loot:
                 loot = enemy.drop_loot()
                 if loot:
-                    print(f"{enemy.char_name} dropped:")
+                    print(f"\n{enemy.char_name} dropped:")
                     for item in loot:
                         print(f" - {item.name}")
-                        self.pick_up(item)
+                        if self.pick_up(item):
+                            continue
+                        else:
+                            print(f"You don't have enough space!")
             return True
-        elif self.player_health <= 0:
-            print("You have been defeated." \
-                "Don't give up. Try again!")
-            return False
-        return None
 
 class Character():
     def __init__(self, char_name: str, char_description: str):
