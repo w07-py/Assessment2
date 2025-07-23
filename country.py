@@ -1,3 +1,4 @@
+from item import Item
 class Country:
     def __init__(self, country_name):
         self.country_name = country_name
@@ -35,7 +36,7 @@ class Country:
         print(self.description)
         for direction in self.linked_countries:
             country = self.linked_countries[direction]
-            print("The " + country.get_name() + " is " + direction)
+            print("The " + self.country_name() + " is " + direction)
 
     def move(self, direction):
         if direction in self.linked_countries:
@@ -44,4 +45,14 @@ class Country:
             print("You can't go that way")
             return self
 
+class Store:
+    def __init__(self):
+        self.store_items = []
 
+    def add_item(self, item: Item):
+        self.store_items.append(item)
+
+    def display_store(self):
+        print("Welcome to the Store! Here are the items available:")
+        for idx, item in enumerate(self.store_items, 1):
+            print(f"{idx}. {item.name} - {item.description} (Effect: {item.effect}, Weight: {item.weight})")
