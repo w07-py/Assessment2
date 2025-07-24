@@ -33,16 +33,16 @@ time.sleep(1)
 slow_print("Dear player, welcome to Empire Assassins!")
 time.sleep(1)
 
-slow_print("In this game, you'll venture through different countries,")
+slow_print("In this game, you'll adventure through different countries,")
 time.sleep(1)
 
 slow_print("each with its own unique boss to defeat.")
 time.sleep(1)
 
-slow_print("You'll have the freedom to choose your name and appearance,")
+slow_print("You'll have the freedom to choose your name and appearance.")
 time.sleep(1)
 
-slow_print("Along the way, there will be many surprises and hidden easter eggs waiting for you.")
+slow_print("Along the way, there will be many surprises waiting for you.")
 time.sleep(1)
 
 slow_print("There are some details you should know before starting your journey:")
@@ -60,6 +60,8 @@ time.sleep(1)
 slow_print("2. When you get the key from the boss, you can open the door to the next country.")
 time.sleep(1)
 
+slow_print("Type help to find more details when the game begin.")
+
 input("Are you ready to begin your adventure? (TYPE enter to begin)")
 time.sleep(1)
 
@@ -71,7 +73,7 @@ guide.set_conversation(slow_print("Welcome, " + name + ". I am Kael. This is the
                         "The Five Monarchs forged this realm with their own hands. \n"
                         "Legend says that only true warriors and assassins can pass the trials they left behind. \n"
                         "And I... am the one who leads such brave souls on their journey. \n"
-                        "Good luck on your journey. But first, I have two gifts for you - a cloak and a crystal. Choose whichever you prefer."))
+                        "Good luck on your journey. But first, I have a gift for you - a cloak. Choose whichever you prefer."))
 
 guide.describe()
 time.sleep(1.5)
