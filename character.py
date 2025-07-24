@@ -3,14 +3,12 @@ from item import Item
 from typing import Optional, List
 
 class Player:
-    def __init__(self, player_name, appearance, player_skill, ATK = 10, player_health = 100, bag_capacity = 50):
+    def __init__(self, player_name, appearance, ATK = 10, player_health = 100, bag_capacity = 50):
         self.player_name = player_name
         self.appearance = appearance
-        self.player_skill = player_skill
         self.player_health = player_health
         self.bag_capacity = bag_capacity
         self.bag_items: List[Item] = []
-        self.experience = 0
         self.ATK = ATK
         self.gold = 150
 
@@ -18,10 +16,8 @@ class Player:
         print("\n=== PLAYER STATUS ===")
         print("Name:", self.player_name)
         print("Appearance:", self.appearance)
-        print("Skill:", self.player_skill)
         print("Health:", self.player_health)
         print("Attack:", self.ATK)
-        print("Experience:", self.experience)
         print("Gold:", self.gold)
         print("=" * 20)
 

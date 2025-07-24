@@ -21,9 +21,6 @@ from item import Potion
 from item import Special
 from item import ObtainMethod
 
-#Skill.py
-from skill import Skill
-
 def slow_print(text, delay = 0.05):
     for char in text:
         print(char, end = "", flush = True)
@@ -43,9 +40,6 @@ slow_print("each with its own unique boss to defeat.")
 time.sleep(1)
 
 slow_print("You'll have the freedom to choose your name and appearance,")
-time.sleep(1)
-
-slow_print("and pick one skill you like from a range of powerful abilities.")
 time.sleep(1)
 
 slow_print("Along the way, there will be many surprises and hidden easter eggs waiting for you.")
@@ -117,23 +111,9 @@ while choice < 1 or choice > 5:
 cloak_choice = cloaks[choice - 1]
 cloak_choice.outfit_details()
 
-skills = [
-    "Surge of Power  Tycoon",
-    "Blessing of life ",
-    "Gold Tycoon",
-]
-print("There are three different kinds of crystal, feel free to choose one: ")
-for i, skill in enumerate(skills, 1):
-    print(f"{i}. {skill}")
-skill_choice = int(input("Enter the number of your choice (1-3):"))
-while skill_choice < 1 or skill_choice > 3:
-    skill_choice = int(input("Please choose again (1-3):"))
-chosen_skill = skills[skill_choice - 1]
-
 player = Player(
     player_name = name,
     appearance = cloak_choice.name,
-    player_skill = chosen_skill,
     ATK = 10
 )
 
