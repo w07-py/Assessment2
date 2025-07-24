@@ -19,9 +19,8 @@ from item import Weapon
 from item import Armor
 from item import Potion
 from item import Special
-from item import ObtainMethod
 
-def slow_print(text, delay = 0.05):
+def slow_print(text, delay = 0.01):
     for char in text:
         print(char, end = "", flush = True)
         time.sleep(delay)
@@ -103,9 +102,9 @@ cloaks = [
     ),
 ]
 
-print("This is the cloak: ")
+slow_print("This is the cloak: ")
 for i, cloak in enumerate(cloaks, 1):
-    print(f"{i}. {cloak.name}")
+    slow_print(f"{i}. {cloak.name}")
 choice = int(input("Enter the number of your choice (1-5):"))
 while choice < 1 or choice > 5:
     choice = int(input("Please enter the number of your choice:"))
@@ -123,11 +122,10 @@ starting_weapon = Weapon(
     name = "Holy Sword",
     damage = 10,
     description = "A legendary blade imbued with divine power, capable of banishing darkness and guarding those who cannot defend themselves.",
-    effect = "Attack the enemy",
-    obtain_method = ObtainMethod.QUEST
+    effect = "Attack the enemy"
 )
 player.pick_up(starting_weapon)
-print(f"\n Kael gives you a {starting_weapon} to begin your journey.")
+slow_print(f"\n Kael gives you a {starting_weapon} to begin your journey.")
 
 player.id_card()
 
@@ -291,72 +289,63 @@ weapon_india = Weapon(
     name="Scimitar of Eternal Flame",
     damage=18,
     description="A curved blade imbued with sacred fire, said to purify all it touches.",
-    effect="Chance to inflict burning (3 damage/turn for 3 turns)",
-    obtain_method = ObtainMethod.BOSS_DROP
+    effect="Chance to inflict burning (3 damage/turn for 3 turns)"
 )
 
 weapon_british = Weapon(
     name="Blackthorn's Rapier",
     damage=20,
     description="An elegant yet deadly blade entwined with living thorns.",
-    effect="Critical hits poison the enemy (2 damage/turn for 5 turns)",
-    obtain_method=ObtainMethod.BOSS_DROP
+    effect="Critical hits poison the enemy (2 damage/turn for 5 turns)"
 )
 
 weapon_egypt = Weapon(
     name="Khopesh of the Sun God",
     damage=25,
     description="An ancient golden blade bearing hieroglyphs of Ra's power.",
-    effect="+5 damage against undead enemies",
-    obtain_method=ObtainMethod.BOSS_DROP
+    effect="+5 damage against undead enemies"
 )
 
 weapon_japan_1 = Weapon(
     name="Kurokami's Shadow Katana",
     damage=28,
     description="A jet-black katana that seems to absorb light around it.",
-    effect="20% chance to dodge attacks",
-    obtain_method=ObtainMethod.BOSS_DROP
+    effect="20% chance to dodge attacks"
 )
 
 weapon_japan_2 = Weapon(
     name="Aokusa's Sakura Staff",
     damage=22,
     description="A wooden staff adorned with eternally blooming cherry blossoms.",
-    effect="Heals 5 HP per turn",
-    obtain_method=ObtainMethod.BOSS_DROP
+    effect="Heals 5 HP per turn"
 )
 
 weapon_china_1 = Weapon(
     name="Longwei's Dragon Glaive",
     damage=32,
     description="A massive polearm with intricate dragon carvings along its blade.",
-    effect="+10 damage on first attack each combat",
-    obtain_method=ObtainMethod.BOSS_DROP
+    effect="+10 damage on first attack each combat"
 )
 
 weapon_china_2 = Weapon(
     name="Xuelan's Frost Fan",
     damage=26,
     description="An ornate fan that chills the air with each graceful movement.",
-    effect="Chance to freeze enemies (skip their next turn)",
-    obtain_method=ObtainMethod.BOSS_DROP
+    effect="Chance to freeze enemies (skip their next turn)"
 )
 
 weapon_china_3 = Weapon(
     name="Wuchen's Taoist Sword",
     damage=30,
     description="A simple yet deadly jian sword imbued with ancient wisdom.",
-    effect="+5% critical hit chance for each turn in combat (max 25%)",
-    obtain_method=ObtainMethod.BOSS_DROP
+    effect="+5% critical hit chance for each turn in combat (max 25%)"
 )
 
 weapon_china_4 = Weapon(
     name="Zhu Yan's Vermillion Blade",
     damage=40,
     description="A sword forged in celestial fire, radiating intense heat.",
-    effect="Burning effect deals double damage",
-    obtain_method=ObtainMethod.BOSS_DROP
+    effect="Burning effect deals double damage"
 )
 
     #ARMOR
@@ -365,8 +354,7 @@ pharaohs_crown = Armor(
     defense=15,
     description="An ornate golden crown said to grant divine protection.",
     effect="+5 resistance to magic attacks",
-    weight=2.5,
-    obtain_method=ObtainMethod.STORE
+    weight=2.5
 )
 
 samurai_helmet = Armor(
@@ -374,8 +362,7 @@ samurai_helmet = Armor(
     defense=20,
     description="A traditional samurai helmet adorned with a fearsome mempo mask.",
     effect="Reduces critical hit damage by 50%",
-    weight=3,
-    obtain_method=ObtainMethod.STORE
+    weight=3
 )
 
 dragon_armor = Armor(
@@ -383,8 +370,7 @@ dragon_armor = Armor(
     defense=35,
     description="Heavy armor with intricate dragon scales that seem to shimmer.",
     effect="Reduces all damage by 10%",
-    weight=5,
-    obtain_method=ObtainMethod.STORE
+    weight=5
 )
 
 flame_cloak = Armor(
@@ -392,8 +378,7 @@ flame_cloak = Armor(
     defense=25,
     description="A flowing cloak that radiates comforting warmth.",
     effect="Immunity to fire damage",
-    weight=2,
-    obtain_method=ObtainMethod.STORE
+    weight=2
 )
 
 hermits_sandals = Armor(
@@ -401,8 +386,7 @@ hermits_sandals = Armor(
     defense=10,
     description="Simple sandals that leave no trace in dust or snow.",
     effect="+10% evasion chance",
-    weight=1,
-    obtain_method=ObtainMethod.QUEST
+    weight=1
 )
 
     #POTION
@@ -412,8 +396,7 @@ health_potion_small = Potion(
     amount=20,
     description="A red potion that restores vitality.",
     effect="Restores 20 HP",
-    weight=0.5,
-    obtain_method=ObtainMethod.STORE
+    weight=0.5
 )
 
 health_potion_large = Potion(
@@ -422,8 +405,7 @@ health_potion_large = Potion(
     amount=50,
     description="A potent red potion that mends serious wounds.",
     effect="Restores 50 HP",
-    weight=1,
-    obtain_method=ObtainMethod.STORE
+    weight=1
 )
 
 strength_potion = Potion(
@@ -432,8 +414,7 @@ strength_potion = Potion(
     amount=10,
     description="A bubbling orange liquid that temporarily enhances muscle power.",
     effect="+10 ATK for 3 turns",
-    weight=0.5,
-    obtain_method=ObtainMethod.STORE
+    weight=0.5
 )
 
     #SPECIAL
@@ -441,8 +422,7 @@ revival_coin = Special(
     name="Coin of Rebirth",
     description="An ancient coin bearing symbols of life and death.",
     effect="Revives with 50% HP when defeated (consumed on use)",
-    weight=0.1,
-    obtain_method=ObtainMethod.QUEST
+    weight=0.1
 )
 
 #Method
@@ -531,8 +511,7 @@ game_store.add_item(Armor(
     defense=10,
     description="A sturdy helmet to protect your head.",
     effect="Increase defense by 10",
-    weight=2,
-    obtain_method=ObtainMethod.STORE
+    weight=2
 ), 75)
 
 game_store.add_item(Armor(
@@ -540,8 +519,7 @@ game_store.add_item(Armor(
     defense=15,
     description="Solid chest armor.",
     effect="Blocks 20% damage",
-    weight=2.5,
-    obtain_method=ObtainMethod.STORE
+    weight=2.5
 ), 99)
 
 game_store.add_item(Armor(
@@ -549,8 +527,7 @@ game_store.add_item(Armor(
     defense=12,
     description="A cloak woven with fire-resistant feathers.",
     effect="Immunity to fire damage",
-    weight=2,
-    obtain_method=ObtainMethod.STORE
+    weight=2
 ), 78)
 
 game_store.add_item(Armor(
@@ -558,8 +535,7 @@ game_store.add_item(Armor(
     defense=5,
     description="Lightweight sandals that enhance mobility.",
     effect="+10% evasion chance",
-    weight=1,
-    obtain_method=ObtainMethod.STORE
+    weight=1
 ), 90)
 
 game_store.add_item(Potion(
@@ -568,8 +544,7 @@ game_store.add_item(Potion(
     amount=50,
     description="Restores 50 HP.",
     effect="Restore 50 health",
-    weight=1,
-    obtain_method=ObtainMethod.STORE
+    weight=1
 ), 100)
 
 game_store.add_item(Potion(
@@ -578,8 +553,7 @@ game_store.add_item(Potion(
     amount=20,
     description="Boosts your attack power.",
     effect="Increase ATK by 20 for 3 turns",
-    weight=1,
-    obtain_method=ObtainMethod.STORE
+    weight=1
 ), 66)
 
 game_store.add_item(Potion(
@@ -588,22 +562,21 @@ game_store.add_item(Potion(
     amount=15,
     description="Temporarily hardens your skin.",
     effect="+15 DEF for 3 turns",
-    weight=1,
-    obtain_method=ObtainMethod.STORE
+    weight=1
 ), 88)
 
 current_country = india
 dead = False
 
 while dead == False:
-    print("\n")
+    slow_print("\n")
     current_country.get_details()
     inhabitant = current_country.get_character()
     if inhabitant is not None:
         inhabitant.describe()
 
     if current_country.get_name() in ["Spirit Market", "Value of Power"]:
-        print("\n[STORE] Type 'shop' to browse items for sale.")
+        slow_print("\n[STORE] Type 'shop' to browse items for sale.")
 
     command = input(">").strip().lower()
 
@@ -619,11 +592,11 @@ while dead == False:
             if isinstance(inhabitant, Boss):
                 weapon_in_bag = [item for item in player.bag_items if hasattr(item, 'damage')]
                 if not weapon_in_bag:
-                    print("You dont't have a weapon, come to buy one!")
+                    slow_print("You dont't have a weapon, come to buy one!")
                     continue
-                print("Available Weapons:")
+                slow_print("Available Weapons:")
                 for i, weapon in enumerate(weapon_in_bag, 1):
-                    print(f"{i}. {weapon.name} (Damage: {weapon.damage})")
+                    slow_print(f"{i}. {weapon.name} (Damage: {weapon.damage})")
 
                 try:
                     choice = int(input("Choose the number relate to the weapon: ")) - 1
@@ -631,17 +604,17 @@ while dead == False:
                         weapon = weapon_in_bag[choice]
                         result = player.fight(inhabitant, weapon.name)
                         if result is True:
-                            print("Bravo, you won the fight!")
+                            slow_print("Bravo, you won the fight!")
                             current_country.set_character(None)
                         elif result is False:
                             dead = True
                     else:
-                        print("Please enter a valid number!")
+                        slow_print("Please enter a valid number!")
                 except ValueError:
-                    print("Please enter a valid number!")
+                    slow_print("Please enter a valid number!")
     elif command == "shop":
         if current_country.get_name() in ["Spirit Market", "Vault of Power"]:
-            print(f"\nYour glod: {player.gold}")
+            slow_print(f"\nYour glod: {player.gold}")
             game_store.display_store()
             try:
                 choice = int(input("Enter the number of the item that you want to buy: "))
@@ -651,22 +624,22 @@ while dead == False:
                     if player.gold >= price:
                         if player.pick_up(item):
                             player.gold -= price
-                            print(f"\nYou bought: {item.name} for {price} gold!")
-                            print(f"Remaining glod: {player.gold}")
+                            slow_print(f"\nYou bought: {item.name} for {price} gold!")
+                            slow_print(f"Remaining glod: {player.gold}")
                     else:
-                        print("You don't have enough glod!")
-                else:print("Invalid number!")
+                        slow_print("You don't have enough glod!")
+                else:slow_print("Invalid number!")
             except ValueError:
-                print("Please try again!")
+                slow_print("Please try again!")
         else:
-            print("There is no shop here.")
+            slow_print("There is no shop here.")
     elif command == "use":
         item_name = input("What item do you want to use?").strip()
         for item in player.bag_items:
             if item.name.lower() == item_name.lower() and hasattr(item, 'Potion_type'):
                 if item.potion_type.lower() == "health":
                     player.player_health += item.amount
-                    print(f"You used {item_name} and restored {item.amount} health.")
+                    slow_print(f"You used {item_name} and restored {item.amount} health.")
                     player.bag_items.remove(item)
                     break
     elif command == "bag":
@@ -674,24 +647,24 @@ while dead == False:
     elif command == "health":
         player.id_card()
     elif command == "help":
-        print("Available commands:")
-        print("- north/south/east/west: Move in that direction")
-        print("- talk: Talk to characters")
-        print("- fight: Fight with bosses")
-        print("- shop: Browse store items (when in a store)")
-        print("- use: Use an item from your bag")
-        print("- bag/inventory: Check your bag")
-        print("- health/status: Check your status")
-        print("- help: Show this help message")
-        print("- quit: Exit the game")
+        slow_print("Available commands:")
+        slow_print("- north/south/east/west: Move in that direction")
+        slow_print("- talk: Talk to characters")
+        slow_print("- fight: Fight with bosses")
+        slow_print("- shop: Browse store items (when in a store)")
+        slow_print("- use: Use an item from your bag")
+        slow_print("- bag/inventory: Check your bag")
+        slow_print("- health/status: Check your status")
+        slow_print("- help: Show this help message")
+        slow_print("- quit: Exit the game")
     elif command == "quit":
-        print("Thanks for playing! Goodbye!")
+        slow_print("Thanks for playing! Goodbye!")
         break
     else:
-        print("Unknown command. Type 'help' for available commands.")
+        slow_print("Unknown command. Type 'help' for available commands.")
     
     keys_collected = [item for item in player.bag_items if isinstance(item, Key)]
     if len(keys_collected) >= 5: 
-        print("\n CONGRATULATIONS! You have collected all the keys and conquered the Empire of Assassins!")
-        print("You are now the ultimate assassin! Thanks for playing!")
+        slow_print("\n CONGRATULATIONS! You have collected all the keys and conquered the Empire of Assassins!")
+        slow_print("You are now the ultimate assassin! Thanks for playing!")
         break

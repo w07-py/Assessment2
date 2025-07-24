@@ -1,3 +1,4 @@
+from main import slow_print
 from item import Item
 class Country:
     def __init__(self, country_name):
@@ -31,18 +32,18 @@ class Country:
         self.linked_countries[direction] = country_to_link
 
     def get_details(self):
-        print(self.country_name)
-        print("-------------")
-        print(self.description)
+        slow_print(self.country_name)
+        slow_print("-------------")
+        slow_print(self.description)
         for direction in self.linked_countries:
             country = self.linked_countries[direction]
-            print("The " + country.get_name() + " is " + direction)
+            slow_print("The " + country.get_name() + " is " + direction)
 
     def move(self, direction):
         if direction in self.linked_countries:
             return self.linked_countries[direction]
         else:
-            print("You can't go that way")
+            slow_print("You can't go that way")
             return self
 
 class Store:
@@ -55,14 +56,14 @@ class Store:
         self.prices[item.name] = price
 
     def display_store(self):
-        print("\n=== WELCONE TO THE STORE ===")
-        print("Here are the items available for purchase:")
-        print("-" * 50)
+        slow_print("\n=== WELCONE TO THE STORE ===")
+        slow_print("Here are the items available for purchase:")
+        slow_print("-" * 50)
         for idx, item in enumerate(self.store_items, 1):
             price = self.prices.get(item.name, 30)
-            print(f"{idx}. {item.name} - {price} gold")
-            print(f"{item.description}")
-            print(f"Effect: {item.effect} | Weight: {item.weight}")
-            print()
-        print("Enter item number to buy, or 0 to cancel.")
-        print("-" * 50)
+            slow_print(f"{idx}. {item.name} - {price} gold")
+            slow_print(f"{item.description}")
+            slow_print(f"Effect: {item.effect} | Weight: {item.weight}")
+            slow_print()
+        slow_print("Enter item number to buy, or 0 to cancel.")
+        slow_print("-" * 50)
